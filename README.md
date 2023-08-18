@@ -108,6 +108,8 @@ The Classification app is a folder which contains different folders and files:
    + **-column_names**: Column names of the database for the Machine Learning. Default: <My_Label> <residue_conserv> <d_size>
 + **-config_path**: Path for config.txt **It must be inside the Classification app folder**
 + **-h**: show this help message and exit
+
+**Note that absolute paths must be specified correctly in the config.txt file.**
 ## Examples:
   These could be possible examples:
   1. `python gene_app.py -g $SLURM_JOB_NAME -l 872 -o $SLURM_JOB_NAME -cpu $SLURM_CPUS_PER_TASK -config_path "/home/einstein/martin/git_enviroment/Classification_app/config.txt" -column_names "My_Label,pLDDT,MTI_31" -n_splits_grid 14`
