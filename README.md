@@ -80,5 +80,7 @@ The Classification app is a folder which contains different folders and files:
 + gene_app.py:
 
   This file corresponds to the execution script of the application. It will analyse whether a database already exists for the specified gene and, if so, it will automatically run the machine learning algorithm. Otherwise, it will create the database and then perform the classification.
-+ gene_app.slurm
++ gene_app.slurm:
+
+  This file is used for the server queuing system. 
   
