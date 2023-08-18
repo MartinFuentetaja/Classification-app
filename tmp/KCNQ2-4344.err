@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/python_parser.py", line 600, in _handle_usecols
+    col_indices.append(usecols_key.index(col))
+ValueError: 'beta_strand' is not in list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/einstein/martin/git_enviroment/Classification_app/Scripts/Machine_Learning/Machine_Learning.py", line 141, in <module>
+    df             = read_data_mod(Database_path, args.column_names)
+  File "/home/einstein/martin/git_enviroment/Classification_app/Scripts/Machine_Learning/Machine_Learning.py", line 35, in read_data_mod
+    file_readed = pd.read_excel(file, header = 0, usecols = columns) #No hemos definido index.col para que se haga más fácil la lectura de los features. 
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 486, in read_excel
+    data = io.parse(
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 1551, in parse
+    return self._reader.parse(
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 889, in parse
+    raise err
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 851, in parse
+    parser = TextParser(
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1803, in TextParser
+    return TextFileReader(*args, **kwds)
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1679, in _make_engine
+    return mapping[engine](f, **self.options)
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/python_parser.py", line 124, in __init__
+    ) = self._infer_columns()
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/python_parser.py", line 535, in _infer_columns
+    columns = self._handle_usecols(
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/python_parser.py", line 602, in _handle_usecols
+    self._validate_usecols_names(self.usecols, usecols_key)
+  File "/home/einstein/.local/lib/python3.10/site-packages/pandas/io/parsers/base_parser.py", line 959, in _validate_usecols_names
+    raise ValueError(
+ValueError: Usecols do not match columns, columns expected but not found: ['beta_strand'] (sheet: 0)
