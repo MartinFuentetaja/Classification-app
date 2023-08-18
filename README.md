@@ -120,7 +120,10 @@ The Classification app is a folder which contains different folders and files:
 
 ## Databases:
   As mentioned, the ClinVar and CCDS databases are contained in the Data folder, and can be downloaded from:
-  + ClinVar: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/
-  + CCDS: https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/
+  + ClinVar: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
+  + CCDS:
+    1. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS_protein.current.faa.gz
+    2. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS_nucleotide.current.fna.gz
+    3. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS2Sequence.current.txt   
   
   It is worth noting that the ClinVar database 'variant_summary.txt.gz' is updated on the first Thursday of each month. Therefore, the bash shell file "variant_summary_download.sh" is included in the Data folder and automatically downloads the new ClinVar database.
