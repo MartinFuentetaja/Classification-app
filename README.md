@@ -109,6 +109,7 @@ The Classification app is a folder which contains different folders and files:
 + **-config_path**: Path for config.txt **It must be inside the Classification app folder**
 + **-h**: show this help message and exit
 
+
 **Note that absolute paths must be specified correctly in the config.txt file.**
 ## Examples:
   These could be possible examples:
