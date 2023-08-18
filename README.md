@@ -26,6 +26,17 @@ This application uses some python packages that must be installed.
 I have been using the anaconda environment that can be obtained from https://www.anaconda.com/download. Therefore, all the packages mentioned above can be installed with both pip and conda.
 
 On the other hand, the application uses the hhblits programme from HHSuite to construct the MSA for the residue conservation calculation. This program requires a lot of resources, since you have to enter a FASTA sequence of the gene as input, and it will extract all the sequences related to this one, comparing them with the huge databases it needs, since they contain a large number of sequences, and in this way it is able to relate the input sequence to those in the database. Note that this search may take more or less time depending on the device you have. Thus, I recommend to read the HHSuite user guide (https://github.com/soedinglab/hh-suite/wiki) to avoid any problem you can have.
+## Databases:
+  As mentioned, the ClinVar and CCDS databases are contained in the Data folder, and can be downloaded from:
+  + ClinVar: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
+  + CCDS:
+    1. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS_protein.current.faa.gz
+    2. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS_nucleotide.current.fna.gz
+    3. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS2Sequence.current.txt   
+  
+  It is worth noting that the ClinVar database 'variant_summary.txt.gz' is updated on the first Thursday of each month. Therefore, the bash shell file "variant_summary_download.sh" is included in the Data folder and automatically downloads the new ClinVar database.
+
+  On the other hand, the mentioned database must be downloaded and included in the Data folder.
 ## Content
 The Classification app is a folder which contains different folders and files:
 
@@ -118,12 +129,7 @@ The Classification app is a folder which contains different folders and files:
 
   where $SLURM_JOB_NAME corresponds to the gene name. In these two examples the column names are different. This argument parsing must be indicated in the gene_app.slurm file.
 
-## Databases:
-  As mentioned, the ClinVar and CCDS databases are contained in the Data folder, and can be downloaded from:
-  + ClinVar: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
-  + CCDS:
-    1. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS_protein.current.faa.gz
-    2. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS_nucleotide.current.fna.gz
-    3. https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/CCDS2Sequence.current.txt   
+  On the other hand, the msas and RESULTS folders are created automatically when the analysis is finished. In addition, **the tmp folder must be created before starting the execution.**.
+
+
   
-  It is worth noting that the ClinVar database 'variant_summary.txt.gz' is updated on the first Thursday of each month. Therefore, the bash shell file "variant_summary_download.sh" is included in the Data folder and automatically downloads the new ClinVar database.
