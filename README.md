@@ -31,10 +31,11 @@ The Classification app is a folder which contains different folders and files:
 
 + Data:
 
-  This folder contains the ClinVar and CCDS databases, and the rest of the information is also downloaded here. However, this information is temporary and will be deleted after the database has been built. **This folder must be inside the Classification app folder**.
+  This folder contains the ClinVar and CCDS databases, and the rest of the information is also downloaded here. However, this information is temporary and will be deleted after the database has been built. In addition, it contains the "Amino_Acid_Features.xlsx" and "CodigoGenetico.xlsx" Excel files which are required to calculate some of the descriptors.
+  **This folder must be inside the Classification app folder**.
 + msas:
 
-  This folder contains more folders that are called as the indicated gene, and contains the msas for the gene. However, there will be five different files:
+  This folder contains more folders that are called as the indicated gene, and contains the msas for the gene. However, there will be five different files for each folder:
 
     + .hhr
     + .a3m
@@ -74,13 +75,49 @@ The Classification app is a folder which contains different folders and files:
 
   **This file must be inside the Classification app folder**. It contains the absolute paths for the Data folder and the databases needed for hhblits:
 
-  + >DATA PATH=
-  + >UNIREF PATH=
-  + >BFD PATH=
+  + \>DATA PATH=
+  + \>UNIREF PATH=
+  + \>BFD PATH=
+
+  If these paths do not exit the application will report an error.
 + gene_app.py:
 
   This file corresponds to the execution script of the application. It will analyse whether a database already exists for the specified gene and, if so, it will automatically run the machine learning algorithm. Otherwise, it will create the database and then perform the classification.
 + gene_app.slurm:
 
-  This file is used for the server queuing system. 
+  This file is used for the server queuing system.
+## Usage:
+  The application is initialized by argument parsing. Therefore, there are required and optional arguments.
   
+  usage: gene_app.py [-h] [-i FILENAME FILENAME FILENAME FILENAME FILENAME FILENAME FILENAME FILENAME] [-g GEN_NAM] [-l LENGTH] -o OUTFILE [-s STATUS] [-w WEB_DECISION] -cpu CPU_NUMBER [-n_splits NUMBER_SPLITS] [-n_splits_grid NUMBER_SPLITS_GRID] [-column_names COLUMN_NAMES] -config_path CONFIG_PATH
+
+  In this way, the arguments inside the [] are optional and the others are required. We can divide the arguments in two groups:
+
+  + Database group: Parser arguments for database creation
+    + Information:
+      + **-i**: Indicating that the information related to the gene will be manually entered.
+      + **-g** and **-l**: Otherwise, introducing the gene name (-g) and sequence length (-l). **If the length is not a number it will raise an error.**
+      **You only can choose one option, -i or -g and -l. The application will raise an error in case of mixing them.**
+    + **-s**: Status for secondary structure analysis. Regular or Extend. Regular will contain three different types of structures while Extend eight. (default = Regular) \<Regular\>
+    + **-w**:  Status for the ClinVar file downloading: -w <Internet> or -w <Internet/DataBase>. Default <Internet/DataBase>.
+    + **-cpu**:  Number of CPUs for hhblits. Recommendation: 1-4
+    + **-o**: Name for the output file
+ + Machine Learning group: Parser arguments for Machine Learning analysis
+   + **-n_splits**:  Number of splits for cross validation. <default = 5>
+   + **-n_splits_grid**: Number of splits for grid search. <default = 5>
+   + **-column_names**: Column names of the database for the Machine Learning. Default: <My_Label> <residue_conserv> <d_size>
++ **-config_path**: Path for config.txt **It must be inside the Classification app folder**
++ **-h**: show this help message and exit
+## Examples:
+  These could be possible examples:
+  1. `python gene_app.py -g $SLURM_JOB_NAME -l 872 -o $SLURM_JOB_NAME -cpu $SLURM_CPUS_PER_TASK -config_path "/home/einstein/martin/git_enviroment/Classification_app/config.txt" -column_names "My_Label,pLDDT,MTI_31" -n_splits_grid 14`
+  2. `python gene_app.py -g $SLURM_JOB_NAME -l 872 -o $SLURM_JOB_NAME -cpu $SLURM_CPUS_PER_TASK -config_path "/home/einstein/martin/git_enviroment/Classification_app/config.txt" -column_names "My_Label,pLDDT,MTI_31,d_size,d_vol,d_pol_e,d_ip_e,d_hf_e,d_msa,residue_conserv" -n_splits_grid 14`
+
+  where $SLURM_JOB_NAME corresponds to the gene name. In these two examples the column names are different. This argument parsing must be indicated in the gene_app.slurm file.
+
+## Databases:
+  As mentioned, the ClinVar and CCDS databases are contained in the Data folder, and can be downloaded from:
+  + ClinVar: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/
+  + CCDS: https://ftp.ncbi.nlm.nih.gov/pub/CCDS/current_human/
+  
+  It is worth noting that the ClinVar database 'variant_summary.txt.gz' is updated on the first Thursday of each month. Therefore, the bash shell file "variant_summary_download.sh" is included in the Data folder and automatically downloads the new ClinVar database.
