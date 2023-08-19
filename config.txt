@@ -1,0 +1,3 @@
+>DATA PATH=/home/einstein/martin/git_enviroment/Classification_app/Data
+>UNIREF PATH=/bigdisk/scicomp/AlphaFold/DATA_2.3.1/uniref30/UniRef30_2021_03
+>BFD PATH=/bigdisk/scicomp/AlphaFold/DATA_2.3.1/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt
