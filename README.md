@@ -54,7 +54,7 @@ The Classification app is a folder which contains different folders and files:
     + .fil.fas
     + .aligned.gap.filtered.fas
 
-  The first two files correspond to those returned by the hhblits programme. Then we applied a filter with hhfilter to the .a3m file to extract the aligned sequences without insertions, and then we changed the format from .a3m to .fas (FASTA) with reformat.pl, obtaining .fil.fas. Finally, we applied a second filter to avoid sequences with more than 50% gaps. In this way, we obtain the file .aligned.gap.filtered.fas, which we use to calculate the resiude conservation. **hhblits, hhfilter and reformat.pl are scripts from HHSuite.**
+  The first two files correspond to those returned by the hhblits programme. Then we applied a filter with hhfilter to the .a3m file to extract the aligned sequences without insertions, and then we changed the format from .a3m to .fas (FASTA) with reformat.pl, obtaining .fil.fas. Finally, we applied a second filter to avoid sequences with more than 50% gaps. In this way, we obtain the file .aligned.gap.filtered.fas, which we use to calculate the resiude conservation. **Keep in mind that hhblits, hhfilter and reformat.pl are scripts from HHSuite.**
 + Packages:
 
   This folder contains some of the packages that are used in the application.
