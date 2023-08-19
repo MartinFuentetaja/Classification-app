@@ -110,7 +110,7 @@ The Classification app is a folder which contains different folders and files:
       + **-g** and **-l**: Otherwise, introducing the gene name (-g) and sequence length (-l). **If the length is not a number it will raise an error.**
       **You only can choose one option, -i or -g and -l. The application will raise an error in case of mixing them.**
     + **-s**: Status for secondary structure analysis. Regular or Extend. Regular will contain three different types of structures while Extend eight. (default = Regular) \<Regular\>
-    + **-w**:  Status for the ClinVar file downloading: -w <Internet> or -w <Internet/DataBase>. Default <Internet/DataBase>.
+    + **-w**:  Status for the files downloading: -w <Internet> or -w <Internet/DataBase>. Default <Internet/DataBase>. **The Internet/DataBase option is to take the ClinVar information from the database instead of using the REST API. As mentioned before, I strongly recommend this option.**
     + **-cpu**:  Number of CPUs for hhblits. Recommendation: 1-4
     + **-o**: Name for the output file
  + Machine Learning group: Parser arguments for Machine Learning analysis
