@@ -130,6 +130,10 @@ The Classification app is a folder which contains different folders and files:
   where $SLURM_JOB_NAME corresponds to the gene name. In these two examples the column names are different. This argument parsing must be indicated in the gene_app.slurm file.
 
   On the other hand, the msas and RESULTS folders are created automatically when the analysis is finished. In addition, **the tmp folder must be created before starting the execution**.
+## Errors:
+  The application may raise an error if the gene information is entered incorrectly or if there is no information in the databases. This is checked for each file download, so it will raise an error if any of the websites or databases fail. In addition, some websites may not have information about the gene, so this will also be reported.
+
+  Once the databases are built, there may be an error in training the machine learning models, as the clinical condition may only be of one class and therefore no classification training can be performed.
 
 
   
