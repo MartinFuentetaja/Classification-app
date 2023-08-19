@@ -129,7 +129,7 @@ The Classification app is a folder which contains different folders and files:
 
   where $SLURM_JOB_NAME corresponds to the gene name. In these two examples the column names are different. This argument parsing must be indicated in the gene_app.slurm file.
 
-  On the other hand, the msas and RESULTS folders are created automatically when the analysis is finished. In addition, **the tmp folder must be created before starting the execution.**.
+  On the other hand, the msas and RESULTS folders are created automatically when the analysis is finished. In addition, **the tmp folder must be created before starting the execution**.
 
 
   
