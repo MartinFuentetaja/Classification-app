@@ -130,6 +130,21 @@ The Classification app is a folder which contains different folders and files:
   where $SLURM_JOB_NAME corresponds to the gene name. In these two examples the column names are different. This argument parsing must be indicated in the gene_app.slurm file.
 
   On the other hand, the msas and RESULTS folders are created automatically when the analysis is finished. In addition, **the tmp folder must be created before starting the execution**.
+  ## Data Download:
+  + ClinVar:
+    As mentioned above, this information is extracted from the ClinVar REST API or the variant_summary.txt.gz database. For using the REST API, I recommend reading https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/.
+  + CCDS:
+    The CCDS information is extracted from the databases. However, these databases are ordered by their own id, i.e. each gene has a CCDS id. Therefore, a query is made to Ensembl's REST API to extract both the CCDS and transcript ids for each gene. Once the CCDS id is known, it is used to search for the associated information in the CCDS databases.
+
+    **The Ensembl REST API use: https://rest.ensembl.org/**
+  + GenomAD:
+    The GenomAD information is extracted using a Python package called Selenium, which simulates the user interacting with the website to click on the download button. This method is used because there is no REST API available and because the site is dynamic, so web scraping is not possible. Therefore, the transcript id extracted from the Ensembl REST API is used to download the information.
+  + AlphaFold:
+    The AlphaFold file is download after extracting the id that UniRef has used for classifying the particular gene. In this way, the UniRef id is obtained using the REST API: **https://rest.uniprot.org/uniprotkb/stream?format=json&query=%28%28gene%3ASCN7A%29%29+AND+%28model_organism%3A9606%29&sort=length+desc/**. This A url is for the SCN7A gene, but we can change the name to search any other gene.
+
+    Therefore, once the UniRef id is obtained, it must be used to download the pdb file from AlphaFold as the url is constructed as **https://alphafold.ebi.ac.uk/files/AF-{UniRef_ID}-F1-model_v4.pdb**.
+  + Lovd3:
+    The Lovd3 file is obtained using webscraping, in other words, reading the html code. This method is used as no REST API is available or there is no a database.
 ## Errors:
   The application may raise an error if the gene information is entered incorrectly or if there is no information in the databases. This is checked for each file download, so it will raise an error if any of the websites or databases fail. In addition, some websites may not have information about the gene, so this will also be reported.
 
